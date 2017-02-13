@@ -6,7 +6,7 @@
    <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/keen-dashboards.css')}}">
    <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css')}}">
    <link rel="stylesheet" href="{{ url_for ('static', filename='css/custom.css')}}">
-
+   <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/introjs.css')}}">
  </head>
 <body class="application">
 
@@ -14,6 +14,8 @@
    <div class="container-fluid">
        <div class="navbar-header">
            <a class="navbar-brand" href="./">School Donations Dashboard</a>
+           <button class="intro_button" type="button" autofocus onclick="javascript:introJs().start();">Start Tour!</button>
+
        </div>
    </div>
 </div>
@@ -28,7 +30,7 @@
 
                <!-- Time Chart -->
                <div class="col-sm-12">
-                   <div class="chart-wrapper">
+                   <div class="chart-wrapper" data-step="1" data-intro="The description that you want" style="font-weight: normal" data-position="right">
                        <div class="chart-title">
                            Number of Donations
                        </div>
@@ -41,7 +43,7 @@
 
                <!-- Resources -->
                <div class="col-sm-6">
-                   <div class="chart-wrapper">
+                   <div class="chart-wrapper" data-step="2" data-intro="The description that you want" style="font-weight: normal" data-position="right">
                        <div class="chart-title">
                            Resources Type
                        </div>
@@ -55,7 +57,7 @@
 
                <!-- funding Pie -->
                <div class="col-sm-6">
-                   <div class="chart-wrapper">
+                   <div class="chart-wrapper" data-step="3" data-intro="The description that you want" style="font-weight: normal" data-position="right">
                        <div class="chart-title">
                            Funding Status
                        </div>
@@ -71,7 +73,7 @@
 
        <!-- Poverty -->
        <div class="col-sm-3">
-           <div class="chart-wrapper">
+           <div class="chart-wrapper" data-step="4" data-intro="The description that you want" style="font-weight: normal" data-position="right">
                <div class="chart-title">
                    Poverty Level
                </div>
@@ -87,7 +89,7 @@
 
        <!-- menu select -->
        <div class="col-sm-6">
-           <div class="chart-wrapper">
+           <div class="chart-wrapper" data-step="5" data-intro="The description that you want" style="font-weight: normal" data-position="right">
                <div class="chart-title">
                    Donation State
                </div>
@@ -100,7 +102,7 @@
 
        <!-- Metric 1 -->
        <div class="col-sm-2">
-           <div class="chart-wrapper">
+           <div class="chart-wrapper" data-step="6" data-intro="The description that you want" style="font-weight: normal" data-position="right">
                <div class="chart-title">
                    Total Number of Donations
                </div>
@@ -120,7 +122,7 @@
 
        <!-- Metric 2 -->
        <div class="col-sm-2">
-           <div class="chart-wrapper">
+           <div class="chart-wrapper" data-step="7" data-intro="The description that you want" style="font-weight: normal" data-position="right">
                <div class="chart-title">
                    Total Donations in USD
                </div>
@@ -147,5 +149,6 @@
 
 <script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
 <script src="{{ url_for ('static', filename='js/graph.js')}}"></script>
+<script src="{{ url_for ('static', filename='lib/js/intro.js')}}"></script>
 </body>
 </html>
