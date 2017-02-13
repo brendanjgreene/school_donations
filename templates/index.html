@@ -13,9 +13,8 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
    <div class="container-fluid">
        <div class="navbar-header">
-           <a class="navbar-brand" href="./">School Donations Dashboard</a>
-           <button class="intro_button" type="button" autofocus onclick="javascript:introJs().start();">Start Tour!</button>
-
+            <button class="intro_button btn-info" type="button" autofocus onclick="javascript:introJs().start();">Start Tour!</button>
+            <a class="navbar-brand" href="./">School Donations Dashboard</a>
        </div>
    </div>
 </div>
@@ -73,7 +72,7 @@
 
        <!-- Poverty -->
        <div class="col-sm-3">
-           <div class="chart-wrapper" data-step="4" data-intro="The description that you want" style="font-weight: normal" data-position="right">
+           <div class="chart-wrapper" data-step="4" data-intro="The description that you want" style="font-weight: normal" data-position="left">
                <div class="chart-title">
                    Poverty Level
                </div>
@@ -88,8 +87,8 @@
 
 
        <!-- menu select -->
-       <div class="col-sm-6">
-           <div class="chart-wrapper" data-step="5" data-intro="The description that you want" style="font-weight: normal" data-position="right">
+       <div class="col-sm-3">
+           <div class="chart-wrapper" data-step="5" data-intro="The description that you want" style="font-weight: normal" data-position="top">
                <div class="chart-title">
                    Donation State
                </div>
@@ -100,9 +99,22 @@
        </div>
        <!-- menu select -->
 
+       <!-- menu select2 -->
+       <div class="col-sm-3">
+           <div class="chart-wrapper" data-step="6" data-intro="The description that you want" style="font-weight: normal" data-position="bottom">
+               <div class="chart-title">
+                   Donation County
+               </div>
+               <div class="chart-stage">
+                   <div id="menu-select2"></div>
+               </div>
+           </div>
+       </div>
+       <!-- menu select2 -->
+
        <!-- Metric 1 -->
        <div class="col-sm-2">
-           <div class="chart-wrapper" data-step="6" data-intro="The description that you want" style="font-weight: normal" data-position="right">
+           <div class="chart-wrapper" data-step="7" data-intro="The description that you want" style="font-weight: normal" data-position="center">
                <div class="chart-title">
                    Total Number of Donations
                </div>
@@ -122,7 +134,7 @@
 
        <!-- Metric 2 -->
        <div class="col-sm-2">
-           <div class="chart-wrapper" data-step="7" data-intro="The description that you want" style="font-weight: normal" data-position="right">
+           <div class="chart-wrapper" data-step="8" data-intro="The description that you want" style="font-weight: normal" data-position="inline">
                <div class="chart-title">
                    Total Donations in USD
                </div>

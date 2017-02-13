@@ -43,7 +43,7 @@
 
 .dc-select-menu {
    background: #33CC99;
-   width: 80%;
+   width: 90%;
    border: none;
    position: relative;
    height: 31px;
@@ -54,4 +54,11 @@
    padding-top: 4px;
    padding-bottom: 0px;
 
+}
+
+.navbar-header {
+    align-items: center;
+}
+.intro_button {
+    margin: 10px;
 }
