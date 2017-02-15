@@ -6,7 +6,7 @@
    <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/keen-dashboards.css')}}">
    <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css')}}">
    <link rel="stylesheet" href="{{ url_for ('static', filename='css/custom.css')}}">
-   <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/introjs.css')}}">
+   <link rel="stylesheet" href="static/lib/css/introjs.css" />
  </head>
 <body class="application">
 
@@ -14,6 +14,7 @@
    <div class="container-fluid">
        <div class="navbar-header">
             <button class="intro_button btn-info" type="button" autofocus onclick="javascript:introJs().start();">Start Tour!</button>
+            <button class="btn-danger" type="button" onclick="javascript:dc.filterAll();dc.redrawAll();">Reset All Filters</button>
             <a class="navbar-brand" href="./">School Donations Dashboard</a>
        </div>
    </div>
@@ -34,7 +35,11 @@
                            Number of Donations
                        </div>
                        <div class="chart-stage">
-                           <div id="time-chart"></div>
+                           <div id="time-chart">
+                               <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+                               <a class="reset" href="javascript:timeChart.filterAll();dc.redrawAll();"
+                               style="display: none">reset</a>
+                           </div>
                        </div>
                    </div>
                </div>
@@ -47,7 +52,11 @@
                            Resources Type
                        </div>
                        <div class="chart-stage">
-                           <div id="resource-type-row-chart"></div>
+                           <div id="resource-type-row-chart">
+                               <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+                               <a class="reset" href="javascript:resourceTypeChart.filterAll();dc.redrawAll();"
+                               style="display: none">reset</a>
+                           </div>
                        </div>
                    </div>
                </div>
@@ -61,7 +70,11 @@
                            Funding Status
                        </div>
                        <div class="chart-stage">
-                           <div id="funding-chart"></div>
+                           <div id="funding-chart">
+                               <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+                               <a class="reset" href="javascript:fundingStatusChart.filterAll();dc.redrawAll();"
+                               style="display: none">reset</a>
+                           </div>
                        </div>
                    </div>
                </div>
@@ -77,7 +90,11 @@
                    Poverty Level
                </div>
                <div class="chart-stage">
-                   <div id="poverty-level-row-chart"></div>
+                   <div id="poverty-level-row-chart">
+                       <span class="reset" style="display: none;">range: <span class="filter"></span></span>
+                       <a class="reset" href="javascript:povertyLevelChart.filterAll();dc.redrawAll();"
+                       style="display: none">reset</a>
+                   </div>
                </div>
            </div>
        </div>
@@ -87,7 +104,7 @@
 
 
        <!-- menu select -->
-       <div class="col-sm-3">
+       <div class="col-sm-2">
            <div class="chart-wrapper" data-step="5" data-intro="The description that you want" style="font-weight: normal" data-position="top">
                <div class="chart-title">
                    Donation State
@@ -100,7 +117,7 @@
        <!-- menu select -->
 
        <!-- menu select2 -->
-       <div class="col-sm-3">
+       <div class="col-sm-2">
            <div class="chart-wrapper" data-step="6" data-intro="The description that you want" style="font-weight: normal" data-position="bottom">
                <div class="chart-title">
                    Donation County
@@ -114,7 +131,7 @@
 
        <!-- Metric 1 -->
        <div class="col-sm-2">
-           <div class="chart-wrapper" data-step="7" data-intro="The description that you want" style="font-weight: normal" data-position="center">
+           <div class="chart-wrapper" data-step="7" data-intro="This shows the total number of donations based on your current selections!" style="font-weight: normal" data-position="top">
                <div class="chart-title">
                    Total Number of Donations
                </div>
@@ -134,7 +151,7 @@
 
        <!-- Metric 2 -->
        <div class="col-sm-2">
-           <div class="chart-wrapper" data-step="8" data-intro="The description that you want" style="font-weight: normal" data-position="inline">
+           <div class="chart-wrapper" data-step="8" data-intro="This shows the total amount of donations in US $ Dollars based on your current selections!" style="font-weight: normal" data-position="top">
                <div class="chart-title">
                    Total Donations in USD
                </div>
@@ -144,8 +161,27 @@
            </div>
        </div>
        <!-- Metric 2 -->
-
+       <div class="col-sm-12">
+           <div class="chart-wrapper" data-step="9" data-intro="This Lists the detail of donations based on your current selections!" style="font-weight: normal" data-position="top">
+               <div class="chart-title">
+                   Table of Donations
+               </div>
+               <div class="chart-stage">
+                   <table id="dcdatatable" class="table table-hover dc-data-table">
+                       <thead>
+                           <th>Date</th>
+                           <th>$ Amount Donated $</th>
+                           <th>Resource Type</th>
+                           <th>Poverty Level</th>
+                           <th>State</th>
+                           <th>County</th>
+                       </thead>
+                   </table>
+               </div>
+           </div>
+       </div>
    </div>
+
 </div>
 
 <hr>
@@ -161,6 +197,7 @@
 
 <script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
 <script src="{{ url_for ('static', filename='js/graph.js')}}"></script>
-<script src="{{ url_for ('static', filename='lib/js/intro.js')}}"></script>
+<script src="static/js/graph.js" type="text/javascript"></script>
+<script src="static/lib/js/intro.js" type="text/javascript"></script>
 </body>
 </html>

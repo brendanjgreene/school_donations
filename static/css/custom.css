@@ -61,4 +61,9 @@
 }
 .intro_button {
     margin: 10px;
+    position: relative;
+    float: right;
+}
+.navbar-header > button {
+    margin: 10px;
 }

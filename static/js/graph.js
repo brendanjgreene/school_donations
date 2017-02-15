@@ -14,6 +14,7 @@ function makeGraphs(error, projectsJson) {
        d["date_posted"] = dateFormat.parse(d["date_posted"]);
        d["date_posted"].setDate(1);
        d["total_donations"] = +d["total_donations"];
+       d.Year = d.date_posted.getFullYear();
    });
 
 
@@ -35,11 +36,10 @@ function makeGraphs(error, projectsJson) {
    });
    var countyDim = ndx.dimension(function (d) {
        return d["school_county"];
-   })
+   });
    var totalDonationsDim = ndx.dimension(function (d) {
        return d["total_donations"];
    });
-
    var fundingStatus = ndx.dimension(function (d) {
        return d["funding_status"];
    });
@@ -73,12 +73,13 @@ function makeGraphs(error, projectsJson) {
    var maxDate = dateDim.top(1)[0]["date_posted"];
 
    //Charts
-   var timeChart = dc.barChart("#time-chart");
-   var resourceTypeChart = dc.rowChart("#resource-type-row-chart");
-   var povertyLevelChart = dc.rowChart("#poverty-level-row-chart");
-   var numberProjectsND = dc.numberDisplay("#number-projects-nd");
-   var totalDonationsND = dc.numberDisplay("#total-donations-nd");
-   var fundingStatusChart = dc.pieChart("#funding-chart");
+   timeChart = dc.barChart("#time-chart");
+   resourceTypeChart = dc.rowChart("#resource-type-row-chart");
+   povertyLevelChart = dc.rowChart("#poverty-level-row-chart");
+   numberProjectsND = dc.numberDisplay("#number-projects-nd");
+   totalDonationsND = dc.numberDisplay("#total-donations-nd");
+   fundingStatusChart = dc.pieChart("#funding-chart");
+   datatable = dc.dataTable("#dcdatatable");
 
 
    selectField = dc.selectMenu('#menu-select')
@@ -105,7 +106,7 @@ function makeGraphs(error, projectsJson) {
        .group(totalDonations)
        .formatNumber(d3.format(".3s"));
 
- timeChart
+   timeChart
        .width(800)
        .height(200)
        .margins({top: 10, right: 50, bottom: 30, left: 50})
@@ -138,6 +139,40 @@ function makeGraphs(error, projectsJson) {
        .transitionDuration(1500)
        .dimension(fundingStatus)
        .group(numProjectsByFundingStatus);
+
+   datatable
+       .dimension(dateDim)
+       .group(function (d) {
+            return d.Year
+       })
+       .columns([
+           function (d) {
+           return d.date_posted.getMonth() + 1 + "/" + d.date_posted.getFullYear();
+           },
+           function (d) {
+           return d.total_donations
+           },
+           function (d) {
+           return d.resource_type
+           },
+           function (d) {
+           return d.poverty_level
+           },
+           function (d) {
+           return d.school_state
+           },
+           function (d) {
+           return d.school_county
+           }
+       ])
+       .size(15)
+       .sortBy(function (d) {
+           return d.date_posted
+       })
+       .order(d3.ascending)
+       .on('renderlet', function (table) {
+            table.selectAll('.dc-table-group').classed('info', true);
+       });
 
 
    dc.renderAll();
