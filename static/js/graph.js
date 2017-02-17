@@ -73,7 +73,8 @@ function makeGraphs(error, projectsJson) {
    var maxDate = dateDim.top(1)[0]["date_posted"];
 
    //Charts
-   timeChart = dc.barChart("#time-chart");
+   timeChart = dc.lineChart("#time-chart");
+   timeRangeChart = dc.barChart("#time-range-chart");
    resourceTypeChart = dc.rowChart("#resource-type-row-chart");
    povertyLevelChart = dc.rowChart("#poverty-level-row-chart");
    numberProjectsND = dc.numberDisplay("#number-projects-nd");
@@ -109,20 +110,37 @@ function makeGraphs(error, projectsJson) {
    timeChart
        .width(800)
        .height(200)
+       .renderArea(true)
        .margins({top: 10, right: 50, bottom: 30, left: 50})
        .dimension(dateDim)
+       .rangeChart(timeRangeChart)
        .group(numProjectsByDate)
+       .brushOn(false)
+       .mouseZoomable(true)
        .transitionDuration(500)
+       .margins({top: 30, right: 50, bottom: 50, left: 40})
        .x(d3.time.scale().domain([minDate, maxDate]))
        .elasticY(true)
        .xAxisLabel("Year")
        .yAxis().ticks(4);
+
+   timeRangeChart
+       .width(800)
+       .height(40)
+       .margins({top: 0, right: 50, bottom: 20, left: 40})
+       .dimension(dateDim)
+       .group(numProjectsByDate)
+       .centerBar(true)
+       .gap(1)
+       .x(d3.time.scale().domain([minDate, maxDate]))
+       .yAxis().ticks(0);
 
    resourceTypeChart
        .width(300)
        .height(250)
        .dimension(resourceTypeDim)
        .group(numProjectsByResourceType)
+       .elasticX(true)
        .xAxis().ticks(4);
 
    povertyLevelChart
@@ -130,10 +148,10 @@ function makeGraphs(error, projectsJson) {
        .height(250)
        .dimension(povertyLevelDim)
        .group(numProjectsByPovertyLevel)
+       .elasticX(true)
        .xAxis().ticks(4);
 
    fundingStatusChart
-       .height(220)
        .radius(90)
        .innerRadius(40)
        .transitionDuration(1500)
@@ -165,11 +183,7 @@ function makeGraphs(error, projectsJson) {
            return d.school_county
            }
        ])
-       .size(15)
-       .sortBy(function (d) {
-           return d.date_posted
-       })
-       .order(d3.ascending)
+       .size(20)
        .on('renderlet', function (table) {
             table.selectAll('.dc-table-group').classed('info', true);
        });
