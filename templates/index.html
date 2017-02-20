@@ -9,7 +9,7 @@
    <link rel="stylesheet" href="static/lib/css/introjs.css" />
  </head>
 <body class="application">
-
+<div class="container">
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
    <div class="container-fluid">
        <div class="navbar-header">
@@ -41,7 +41,6 @@
                                style="display: none">reset</a>
                            </div>
                            <div id="time-range-chart"></div>
-                           <p class="muted pull-right" style="margin-right: 15px;">select a time range to zoom in</p>
                        </div>
                    </div>
                </div>
@@ -163,17 +162,12 @@
            </div>
        </div>
        <!-- Metric 2 -->
-       <div class="col-sm-1">
-       <div class="chart-wrapper">
-                   <button class="btn-danger" type="button" onclick="javascript:dc.filterAll();dc.redrawAll();">Reset All Filters</button>
-       </div>
-       </div>
+       
        <!-- Table -->
        <div class="col-sm-12">
            <div class="chart-wrapper" data-step="9" data-intro="This Lists the detail of donations based on your current selections!" style="font-weight: normal" data-position="top">
                <div class="chart-title">
                    Table of Donations
-                   <button class="btn-danger" type="button" onclick="javascript:dc.filterAll();dc.redrawAll();">Reset All Filters</button>
                </div>
                <div class="chart-stage">
                    <table id="dcdatatable" class="table table-hover dc-data-table">
@@ -198,7 +192,7 @@
    </div>
 
 </div>
-
+</div>
 <hr>
 <p class="small text-muted"> Data viz &#9829; from Code Institute</a></p>
 

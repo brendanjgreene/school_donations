@@ -43,6 +43,9 @@ function makeGraphs(error, projectsJson) {
    var fundingStatus = ndx.dimension(function (d) {
        return d["funding_status"];
    });
+   var fmt = d3.format('02d');
+   var runDimension    = ndx.dimension(function(d) {return [fmt(+d.Expt),fmt(+d.Run)];}),
+        grouping = function (d) { return d.Expt;};
 
 
    //Calculate metrics
@@ -121,7 +124,7 @@ function makeGraphs(error, projectsJson) {
        .margins({top: 30, right: 50, bottom: 50, left: 40})
        .x(d3.time.scale().domain([minDate, maxDate]))
        .elasticY(true)
-       .xAxisLabel("Year")
+       .xAxisLabel('Select Below to Zoom in on a time range')
        .yAxis().ticks(4);
 
    timeRangeChart
@@ -161,8 +164,9 @@ function makeGraphs(error, projectsJson) {
    datatable
        .dimension(dateDim)
        .group(function (d) {
-            return d.Year
+             return d.Year
        })
+       .size(10)
        .columns([
            function (d) {
            return d.date_posted.getMonth() + 1 + "/" + d.date_posted.getFullYear();
@@ -183,11 +187,11 @@ function makeGraphs(error, projectsJson) {
            return d.school_county
            }
        ])
-       .size(20)
-       .on('renderlet', function (table) {
-            table.selectAll('.dc-table-group').classed('info', true);
+       .sortBy(function(d){
+           return d.total_donations.descending
        });
 
 
    dc.renderAll();
 }
+
