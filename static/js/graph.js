@@ -22,7 +22,7 @@ function makeGraphs(error, projectsJson) {
     ndx = crossfilter(donorsUSProjects);
 
     //Define Dimensions
-    var dateDim = ndx.dimension(function (d) {
+    dateDim = ndx.dimension(function (d) {
         return d["date_posted"];
     });
     var resourceTypeDim = ndx.dimension(function (d) {
@@ -65,7 +65,6 @@ function makeGraphs(error, projectsJson) {
         return d["total_donations"];
     });
 
-    results=all
 
     var max_state = totalDonationsByState.top(1)[0].value;
     var max_county = totalDonationsByCounty.top(1)[0].value;
@@ -84,13 +83,13 @@ function makeGraphs(error, projectsJson) {
     totalDonationsND = dc.numberDisplay("#total-donations-nd");
     fundingStatusChart = dc.pieChart("#funding-chart");
     datatable = dc.dataTable("#dcdatatable");
+    mySize = dc.numberDisplay("#mySize");
 
 
     datatable
         .dimension(dateDim)
-        .group(function (d) {
-            return d.Year
-        })
+        .group(function(d) { return d.Year; })
+        .turnOnControls(true)
         .size(Infinity)
         .columns([
             function (d) {
@@ -122,6 +121,12 @@ function makeGraphs(error, projectsJson) {
         .dimension(countyDim)
         .group(countyGroup);
 
+    mySize
+        .formatNumber(d3.format("d"))
+        .valueAccessor(function (d) {
+            return d;
+        })
+        .group(all);
 
     numberProjectsND
         .formatNumber(d3.format("d"))
@@ -192,9 +197,7 @@ function makeGraphs(error, projectsJson) {
     update();
     dc.renderAll();
 }
-
-
-var ofs = 0, pag = 17;
+var ofs = 0, pag = 23;
 function display() {
         d3.select('#begin')
             .text(ofs);
@@ -203,10 +206,7 @@ function display() {
         d3.select('#last')
             .attr('disabled', ofs-pag<0 ? 'true' : null);
         d3.select('#next')
-            .attr('disabled', ofs+pag>=maxDate ? 'true' : null);
-        d3.select('#size')
-            .text(ndx.size);
-
+            .attr('disabled', ofs+pag>=parseInt($("#mySize").text()) ? 'true' : null);
 }
 function update() {
       datatable.beginSlice(ofs);

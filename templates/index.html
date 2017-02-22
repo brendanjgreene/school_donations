@@ -10,11 +10,11 @@
  </head>
 <body class="application">
 <div class="container">
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div data-step="10" data-intro="The description that you want" style="font-weight: normal" data-position="bottom" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
    <div class="container-fluid">
        <div class="navbar-header">
             <button class="intro_button btn-info" type="button" autofocus onclick="javascript:introJs().start();">Start Tour!</button>
-            <button class="btn-danger" type="button" onclick="javascript:dc.filterAll();dc.redrawAll();">Reset All Filters</button>
+            <button class="btn-danger pull-left"  type="button" onclick="javascript:dc.filterAll();dc.redrawAll();">Reset All Filters</button>
             <a class="navbar-brand" href="./">School Donations Dashboard</a>
        </div>
    </div>
@@ -168,6 +168,7 @@
            <div class="chart-wrapper" data-step="9" data-intro="This Lists the detail of donations based on your current selections!" style="font-weight: normal" data-position="top">
                <div class="chart-title">
                    Table of Donations
+
                </div>
                <div class="chart-stage">
                    <table id="dcdatatable" class="table table-hover dc-data-table">
@@ -181,9 +182,11 @@
                        </thead>
                    </table>
                    <div id="paging">
-                       Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>
-                       <input id="last" class="btn" type="Button" value="Last" onclick="javascript:last()" />
-                       <input id="next" class="btn" type="button" value="Next" onclick="javascript:next()"/>
+                       Showing <span id="begin"></span>-<span id="end"></span> of <span id="mySize"></span>
+
+                   <input id="last" class="btn" type="Button" value="Last" onclick="javascript:last()"/>
+                   <input id="next" class="btn" type="button" value="Next" onclick="javascript:next()"/>
+
                    </div>
                </div>
            </div>
