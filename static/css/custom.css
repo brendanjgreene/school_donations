@@ -1,12 +1,10 @@
 #number-projects-nd {
-   font-size: 60px;
+   font-size: 45px;
 }
 
 #total-donations-nd {
-   font-size: 60px;
+   font-size: 50px;
 }
-
-
 
 
 .dc-chart g.row text {
@@ -43,7 +41,7 @@
 
 .dc-select-menu {
    background: #33CC99;
-   width: 90%;
+   width: 100%;
    border: none;
    position: relative;
    height: 31px;
@@ -66,4 +64,7 @@
 }
 .navbar-header > button {
     margin: 10px;
+}
+body.application {
+  background-image: url("/static/assets/yourstory-education.jpg");
 }
