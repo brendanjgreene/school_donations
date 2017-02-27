@@ -66,5 +66,6 @@
     margin: 10px;
 }
 body.application {
-  background-image: url("/static/assets/yourstory-education.jpg");
+    background-image: url("/static/assets/yourstory-education.jpg");
+    background-size: 100% auto;
 }

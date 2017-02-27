@@ -147,14 +147,14 @@ function makeGraphs(error, projectsJson) {
         .width(750)
         .height(200)
         .renderArea(true)
-        .margins({top: 10, right: 50, bottom: 30, left: 50})
+        .margins({top: 10, right: 30, bottom: 40, left: 40})
         .dimension(dateDim)
         .rangeChart(timeRangeChart)
         .group(numProjectsByDate)
         .brushOn(false)
         .mouseZoomable(true)
         .transitionDuration(500)
-        .margins({top: 30, right: 50, bottom: 50, left: 40})
+        //.margins({top: 30, right: 50, bottom: 50, left: 40})
         .x(d3.time.scale().domain([minDate, maxDate]))
         .elasticY(true)
         .xAxisLabel('Select Below to Zoom in on a time range')
@@ -162,8 +162,8 @@ function makeGraphs(error, projectsJson) {
 
     timeRangeChart
         .width(750)
-        .height(40)
-        .margins({top: 0, right: 50, bottom: 20, left: 40})
+        .height(50)
+        .margins({top: 0, right: 30, bottom: 20, left: 40})
         .dimension(dateDim)
         .group(numProjectsByDate)
         .centerBar(true)
@@ -197,7 +197,7 @@ function makeGraphs(error, projectsJson) {
     update();
     dc.renderAll();
 }
-var ofs = 0, pag = 23;
+var ofs = 0, pag = 15;
 function display() {
         d3.select('#begin')
             .text(ofs);
@@ -223,3 +223,4 @@ function last() {
       update();
       datatable.redraw();
 }
+
