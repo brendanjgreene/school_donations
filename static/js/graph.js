@@ -133,7 +133,8 @@ function makeGraphs(error, projectsJson) {
         .valueAccessor(function (d) {
             return d;
         })
-        .group(all);
+        .group(all)
+        .formatNumber(d3.format(","));
 
     totalDonationsND
         .formatNumber(d3.format("d"))
@@ -141,7 +142,7 @@ function makeGraphs(error, projectsJson) {
             return d;
         })
         .group(totalDonations)
-        .formatNumber(d3.format(".3s"));
+        .formatNumber(d3.format("$.3s"));
 
     timeChart
         .width(750)
@@ -197,7 +198,7 @@ function makeGraphs(error, projectsJson) {
     update();
     dc.renderAll();
 }
-var ofs = 0, pag = 15;
+var ofs = 1, pag = 15;
 function display() {
         d3.select('#begin')
             .text(ofs);
@@ -209,8 +210,8 @@ function display() {
             .attr('disabled', ofs+pag>=parseInt($("#mySize").text()) ? 'true' : null);
 }
 function update() {
-      datatable.beginSlice(ofs);
-      datatable.endSlice(ofs+pag);
+      datatable.beginSlice(ofs-1);
+      datatable.endSlice(ofs+pag-1);
       display();
 }
 function next() {
