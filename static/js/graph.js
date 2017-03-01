@@ -86,6 +86,7 @@ function makeGraphs(error, projectsJson) {
     mySize = dc.numberDisplay("#mySize");
 
 
+
     datatable
         .dimension(dateDim)
         .group(function(d) { return d.Year; })
@@ -223,5 +224,11 @@ function last() {
       ofs -= pag;
       update();
       datatable.redraw();
+}
+
+function resetofs() {
+    ofs = 1;
+    update();
+    datatable.redraw();
 }
 
