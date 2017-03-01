@@ -6,15 +6,15 @@
    <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/keen-dashboards.css')}}">
    <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css')}}">
    <link rel="stylesheet" href="{{ url_for ('static', filename='css/custom.css')}}">
-   <link rel="stylesheet" href="static/lib/css/introjs.css" />
- </head>
+   <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/introjs.css')}}">
+</head>
 <body class="application">
 <div class="container">
 <div data-step="10" data-intro="Off Course you can always come back up here and Reset All Filters to Start Over!!" style="font-weight: normal" data-position="bottom" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
    <div class="container-fluid">
        <div class="navbar-header">
             <button class="intro_button btn-info" type="button" autofocus onclick="introJs().start();">Start Tour!</button>
-            <button class="btn-danger pull-left"  type="button" onclick="dc.filterAll();dc.redrawAll();">Reset All Filters</button>
+            <button class="btn-danger pull-left"  type="button" onclick="dc.filterAll();dc.redrawAll();resetofs()">Reset All Filters</button>
             <a class="navbar-brand" href="./">School Donations Dashboard</a>
        </div>
    </div>
@@ -37,8 +37,8 @@
                        <div class="chart-stage">
                            <div id="time-chart">
                                <span class="reset" style="display: none;">Time Range: <span class="filter"></span></span>
-                               <a class="reset" href="javascript:timeChart.filterAll();dc.redrawAll();"
-                               style="display: none">reset</a>
+                               <a class="reset" href="javascript:timeRangeChart.filterAll();timeChart.filterAll();dc.redrawAll();resetofs()"
+                               style="display: none">Reset</a>
                            </div>
                            <div id="time-range-chart"></div>
                        </div>
@@ -55,8 +55,8 @@
                        <div class="chart-stage">
                            <div id="resource-type-row-chart">
                                <span class="reset" style="display: none;">Selected: <span class="filter"></span></span>
-                               <a class="reset" href="javascript:resourceTypeChart.filterAll();dc.redrawAll();"
-                               style="display: none">reset</a>
+                               <a class="reset" href="javascript:resourceTypeChart.filterAll();dc.redrawAll();resetofs()"
+                               style="display: none">Reset</a>
                            </div>
                        </div>
                    </div>
@@ -73,8 +73,8 @@
                        <div class="chart-stage">
                            <div id="funding-chart">
                                <span class="reset" style="display: none;">Selected: <span class="filter"></span></span>
-                               <a class="reset" href="javascript:fundingStatusChart.filterAll();dc.redrawAll();"
-                               style="display: none">reset</a>
+                               <a class="reset" href="javascript:fundingStatusChart.filterAll();dc.redrawAll();resetofs()"
+                               style="display: none">Reset</a>
                            </div>
                        </div>
                    </div>
@@ -93,8 +93,8 @@
                <div class="chart-stage">
                    <div id="poverty-level-row-chart">
                        <span class="reset" style="display: none;">Selected: <span class="filter"></span></span>
-                       <a class="reset" href="javascript:povertyLevelChart.filterAll();dc.redrawAll();"
-                       style="display: none">reset</a>
+                       <a class="reset" href="javascript:povertyLevelChart.filterAll();dc.redrawAll();resetofs()"
+                       style="display: none">Reset</a>
                    </div>
                </div>
            </div>
