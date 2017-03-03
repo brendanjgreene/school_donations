@@ -180,7 +180,7 @@ function makeGraphs(error, projectsJson) {
         .formatNumber(d3.format("$.3s"));
 
     timeChart
-        .width(625)
+        .width(700)
         .height(200)
         .renderArea(true)
         .margins({top: 10, right: 30, bottom: 40, left: 40})
@@ -196,7 +196,7 @@ function makeGraphs(error, projectsJson) {
         .yAxis().ticks(4);
 
     timeRangeChart
-        .width(625)
+        .width(700)
         .height(50)
         .margins({top: 0, right: 30, bottom: 20, left: 40})
         .dimension(dateDim)
@@ -232,7 +232,7 @@ function makeGraphs(error, projectsJson) {
     update();
     dc.renderAll();
 }
-var ofs = 1, pag = 15;
+var ofs = 1, pag = 10;
 function display() {
         d3.select('#begin')
             .text(ofs);

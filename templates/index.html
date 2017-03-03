@@ -44,43 +44,92 @@
                </div>
                <!-- Time Chart -->
 
-               <!-- Resources -->
-               <div class="col-sm-6">
-                   <div class="chart-wrapper" data-step="2" data-intro="This Graph Displays the type of Resource Donated. You can select a type or types by clicking on them.  Once a selection is made the selected types are displayed above and can be Reset if wanted." style="font-weight: normal" data-position="right">
+               <!--scatter Map-->
+               <div class="col-sm-12">
+                   <div class="chart-wrapper">
                        <div class="chart-title">
-                           Resources Type
+                           Scatter Map
                        </div>
                        <div class="chart-stage">
-                           <div id="resource-type-row-chart">
-                               <span class="reset" style="display: none;">Selected: <span class="filter"></span></span>
-                               <a class="reset" href="javascript:resourceTypeChart.filterAll();dc.redrawAll();resetofs()"
-                               style="display: none">Reset</a>
+                           <div id="scatter"></div>
+                       </div>
+                   </div>
+               </div>
+               <!--scatter Map-->
+
+               <!-- Table -->
+               <div class="col-sm-12">
+                   <div class="chart-wrapper" data-step="9" data-intro="This Lists the details of donations based on your current selections!" style="font-weight: normal" data-position="top">
+                       <div class="chart-title">
+                           Table of Donations
+                       </div>
+                       <div class="chart-stage">
+                           <table id="dcdatatable" class="table table-hover dc-data-table">
+                               <thead>
+                               <th>Date</th>
+                               <th>$ Amount Donated $</th>
+                               <th>Resource Type</th>
+                               <th>Poverty Level</th>
+                               <th>State</th>
+                               <th>County</th>
+                               </thead>
+                           </table>
+                           <div id="paging">
+                               <input id="first" class="btn" type="Button" value="|<<" onclick="javascript:resetofs()"/>
+                               <input id="last" class="btn" type="Button" value="<<" onclick="javascript:last()"/>
+                               Showing <span id="begin"></span>-<span id="end"></span> of <span id="mySize"></span>
+                               <input id="next" class="btn" type="button" value=">>" onclick="javascript:next()"/>
+                               <input id="end" class="btn" type="Button" value=">>|" onclick="javascript:lastpag()"/>
                            </div>
                        </div>
                    </div>
                </div>
-               <!-- Resources -->
-
-
-               <!-- funding Pie -->
-               <div class="col-sm-6">
-                   <div class="chart-wrapper" data-step="3" data-intro="This Pie Chart Displays the Funding Status, which can be selected by clicking on them.  Once a selection is mad the selections are displayed above the chart and can be Reset if desired" style="font-weight: normal" data-position="right">
-                       <div class="chart-title">
-                           Funding Status
-                       </div>
-                       <div class="chart-stage">
-                           <div id="funding-chart">
-                               <span class="reset" style="display: none;">Selected: <span class="filter"></span></span>
-                               <a class="reset" href="javascript:fundingStatusChart.filterAll();dc.redrawAll();resetofs()"
-                               style="display: none">Reset</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <!-- funding Pie -->
-
+               <!-- Table -->
            </div>
        </div>
+       <!-- Reset -->
+       <div class="col-sm-4">
+           <div class="chart-wrapper">
+               <div class="chart-stage">
+                   <button data-step="10" data-intro="You can always come back up here and Reset All Filters to Start Over!!" style="font-weight: normal" data-position="bottom" class="col-sm-12 btn-danger"  type="button" onclick="dc.filterAll();dc.redrawAll();resetofs()">Reset All Filters</button>
+               </div>
+           </div>
+       </div>
+       <!-- Reset -->
+
+       <!-- Resources -->
+       <div class="col-sm-4">
+           <div class="chart-wrapper" data-step="2" data-intro="This Graph Displays the type of Resource Donated. You can select a type or types by clicking on them.  Once a selection is made the selected types are displayed above and can be Reset if wanted." style="font-weight: normal" data-position="right">
+               <div class="chart-title">
+                   Resources Type
+               </div>
+               <div class="chart-stage">
+                   <div id="resource-type-row-chart">
+                       <span class="reset" style="display: none;">Selected: <span class="filter"></span></span>
+                       <a class="reset" href="javascript:resourceTypeChart.filterAll();dc.redrawAll();resetofs()"
+                          style="display: none">Reset</a>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <!-- Resources -->
+
+       <!-- funding Pie -->
+       <div class="col-sm-4">
+           <div class="chart-wrapper" data-step="3" data-intro="This Pie Chart Displays the Funding Status, which can be selected by clicking on them.  Once a selection is mad the selections are displayed above the chart and can be Reset if desired" style="font-weight: normal" data-position="right">
+               <div class="chart-title">
+                   Funding Status
+               </div>
+               <div class="chart-stage">
+                   <div id="funding-chart">
+                       <span class="reset" style="display: none;">Selected: <span class="filter"></span></span>
+                       <a class="reset" href="javascript:fundingStatusChart.filterAll();dc.redrawAll();resetofs()"
+                          style="display: none">Reset</a>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <!-- funding Pie -->
 
        <!-- Poverty -->
        <div class="col-sm-4">
@@ -157,60 +206,7 @@
            </div>
        </div>
        <!-- Metric 2 -->
-
-       <!-- Reset -->
-       <div class="col-sm-4">
-           <div class="chart-wrapper">
-               <div class="chart-stage">
-                   <button data-step="10" data-intro="You can always come back up here and Reset All Filters to Start Over!!" style="font-weight: normal" data-position="bottom" class="col-sm-12 btn-danger"  type="button" onclick="dc.filterAll();dc.redrawAll();resetofs()">Reset All Filters</button>
-               </div>
-           </div>
-       </div><!--scatter Map-->
-        <div class="col-sm-8">
-            <div class="chart-wrapper">
-                <div class="chart-title">
-                    Scatter Map
-                </div>
-                <div class="chart-stage">
-                    <div id="scatter"></div>
-                </div>
-            </div>
-        </div>
-        <!--scatter Map-->
-       <!-- Reset -->
    </div>
-    <div class="row">
-       <!-- Table -->
-       <div class="col-sm-12">
-           <div class="chart-wrapper" data-step="9" data-intro="This Lists the details of donations based on your current selections!" style="font-weight: normal" data-position="top">
-               <div class="chart-title">
-                   Table of Donations
-               </div>
-               <div class="chart-stage">
-                   <table id="dcdatatable" class="table table-hover dc-data-table">
-                       <thead>
-                           <th>Date</th>
-                           <th>$ Amount Donated $</th>
-                           <th>Resource Type</th>
-                           <th>Poverty Level</th>
-                           <th>State</th>
-                           <th>County</th>
-                       </thead>
-                   </table>
-                   <div id="paging">
-                   <input id="first" class="btn" type="Button" value="|<<" onclick="javascript:resetofs()"/>
-                   <input id="last" class="btn" type="Button" value="<<" onclick="javascript:last()"/>
-                       Showing <span id="begin"></span>-<span id="end"></span> of <span id="mySize"></span>
-                   <input id="next" class="btn" type="button" value=">>" onclick="javascript:next()"/>
-                   <input id="end" class="btn" type="Button" value=">>|" onclick="javascript:lastpag()"/>
-
-                   </div>
-               </div>
-           </div>
-       </div>
-       <!-- Table -->
-   </div>
-
 </div>
 </div>
 <hr>
