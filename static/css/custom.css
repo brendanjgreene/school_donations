@@ -73,3 +73,9 @@ body.application {
     overflow: scroll;
     overflow-scrolling: auto;
 }
+.night{
+    background: #000000;
+}
+.night .chart-title{
+    color: #f8ff89;
+}

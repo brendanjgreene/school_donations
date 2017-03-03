@@ -115,6 +115,7 @@ function makeGraphs(error, projectsJson) {
         .y(d3.scale.linear().domain([22, 52]))
         .brushOn(false)
         .symbolSize(1)
+        .colors('#f8ff89')
         .clipPadding(2)
         .dimension(longDim)
         .group(Lat);

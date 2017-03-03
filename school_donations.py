@@ -30,7 +30,7 @@ def index():
 def donor_projects():
     connection = MongoClient(MONGODB_HOST, MONGODB_PORT)
     collection = connection[DBS_NAME][COLLECTION_NAME]
-    projects = collection.find(projection=FIELDS, limit=200000)
+    projects = collection.find(projection=FIELDS, limit=55000)
     json_projects = []
     for project in projects:
         json_projects.append(project)
