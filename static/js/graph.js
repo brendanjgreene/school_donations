@@ -14,7 +14,10 @@ function makeGraphs(error, projectsJson) {
         d["date_posted"] = dateFormat.parse(d["date_posted"]);
         d["date_posted"].setDate(1);
         d["total_donations"] = +d["total_donations"];
+        d['school_longitude'] = +d['school_longitude'];
+        d['school_latitude'] = +d['school_latitude'];
         d.Year = d.date_posted.getFullYear();
+
     });
 
 
@@ -22,9 +25,17 @@ function makeGraphs(error, projectsJson) {
     ndx = crossfilter(donorsUSProjects);
 
     //Define Dimensions
+
     dateDim = ndx.dimension(function (d) {
         return d["date_posted"];
     });
+    var latDim = ndx.dimension(function (d) {
+        return d["school_latitude"]
+    });
+    var longDim = ndx.dimension(function (d) {
+        return [+d.school_longitude, +d.school_latitude];
+    });
+
     var resourceTypeDim = ndx.dimension(function (d) {
         return d["resource_type"];
     });
@@ -59,6 +70,11 @@ function makeGraphs(error, projectsJson) {
     var stateGroup = stateDim.group();
     var countyGroup = countyDim.group();
 
+    var Lat = longDim.group().reduceSum(function (d) {
+        return d.school_longitude;
+    });
+
+
 
     var all = ndx.groupAll();
     totalDonations = ndx.groupAll().reduceSum(function (d) {
@@ -70,8 +86,14 @@ function makeGraphs(error, projectsJson) {
     var max_county = totalDonationsByCounty.top(1)[0].value;
 
     //Define values (to be used in charts)
-    minDate = dateDim.bottom(1)[0]["date_posted"];
-    maxDate = dateDim.top(1)[0]["date_posted"];
+    var minDate = dateDim.bottom(1)[0]["date_posted"];
+    var maxDate = dateDim.top(1)[0]["date_posted"];
+
+    var minLong = longDim.bottom(1)[0]["school_longitude"];
+    var maxLong = longDim.top(1)[0]["school_longitude"];
+
+    var minLat = latDim.bottom(1)[0]["school_latitude"];
+    var maxLat = latDim.top(1)[0]["school_latitude"];
 
 
     //Charts
@@ -84,7 +106,18 @@ function makeGraphs(error, projectsJson) {
     fundingStatusChart = dc.pieChart("#funding-chart");
     datatable = dc.dataTable("#dcdatatable");
     mySize = dc.numberDisplay("#mySize");
+    scatterChart = dc.scatterPlot("#scatter");
 
+    scatterChart
+        .width(700)
+        .height(300)
+        .x(d3.scale.linear().domain([-130, -60]))
+        .y(d3.scale.linear().domain([22, 52]))
+        .brushOn(false)
+        .symbolSize(1)
+        .clipPadding(2)
+        .dimension(longDim)
+        .group(Lat);
 
 
     datatable
@@ -111,7 +144,8 @@ function makeGraphs(error, projectsJson) {
             function (d) {
                 return d.school_county
             }
-        ]);
+        ])
+        .order(d3.ascending);
 
 
     selectField = dc.selectMenu('#menu-select')
@@ -146,7 +180,7 @@ function makeGraphs(error, projectsJson) {
         .formatNumber(d3.format("$.3s"));
 
     timeChart
-        .width(750)
+        .width(625)
         .height(200)
         .renderArea(true)
         .margins({top: 10, right: 30, bottom: 40, left: 40})
@@ -156,14 +190,13 @@ function makeGraphs(error, projectsJson) {
         .brushOn(false)
         .mouseZoomable(true)
         .transitionDuration(500)
-        //.margins({top: 30, right: 50, bottom: 50, left: 40})
         .x(d3.time.scale().domain([minDate, maxDate]))
         .elasticY(true)
         .xAxisLabel('Select Below to Zoom in on a time range')
         .yAxis().ticks(4);
 
     timeRangeChart
-        .width(750)
+        .width(625)
         .height(50)
         .margins({top: 0, right: 30, bottom: 20, left: 40})
         .dimension(dateDim)
@@ -231,4 +264,8 @@ function resetofs() {
     update();
     datatable.redraw();
 }
-
+function lastpag() {
+    ofs = 1+parseInt($("#mySize").text())-pag;
+    update();
+    datatable.redraw();
+}

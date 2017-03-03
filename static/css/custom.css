@@ -69,3 +69,7 @@ body.application {
     background-image: url("/static/assets/yourstory-education.jpg");
     background-size: 100% auto;
 }
+.chart-wrapper .chart-stage {
+    overflow: scroll;
+    overflow-scrolling: auto;
+}
