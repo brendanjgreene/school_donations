@@ -30,9 +30,12 @@ function makeGraphs(error, projectsJson) {
         return d["date_posted"];
     });
     var latDim = ndx.dimension(function (d) {
-        return d["school_latitude"]
+        return [+d.school_latitude]
     });
     var longDim = ndx.dimension(function (d) {
+        return [+d.school_longitude]
+    })
+    var latLongDim = ndx.dimension(function (d) {
         return [+d.school_longitude, +d.school_latitude];
     });
 
@@ -70,16 +73,12 @@ function makeGraphs(error, projectsJson) {
     var stateGroup = stateDim.group();
     var countyGroup = countyDim.group();
 
-    var Lat = longDim.group().reduceSum(function (d) {
-        return d.school_longitude;
-    });
-
-
-
-    var all = ndx.groupAll();
+    all = ndx.groupAll();
     totalDonations = ndx.groupAll().reduceSum(function (d) {
         return d["total_donations"];
     });
+    
+    longDimGroup = latLongDim.group();
 
 
     var max_state = totalDonationsByState.top(1)[0].value;
@@ -117,8 +116,8 @@ function makeGraphs(error, projectsJson) {
         .symbolSize(1)
         .colors('#f8ff89')
         .clipPadding(2)
-        .dimension(longDim)
-        .group(Lat);
+        .dimension(latLongDim)
+        .group(longDimGroup);
 
 
     datatable
