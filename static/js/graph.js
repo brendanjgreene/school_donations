@@ -109,10 +109,10 @@ function makeGraphs(error, projectsJson) {
 
     scatterChart
         .width(700)
-        .height(300)
+        .height(350)
         .x(d3.scale.linear().domain([-130, -60]))
         .y(d3.scale.linear().domain([22, 52]))
-        .brushOn(false)
+        .brushOn(true)
         .symbolSize(1)
         .colors('#f8ff89')
         .clipPadding(2)
