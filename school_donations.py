@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 MONGO_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017')
 DBS_NAME = os.getenv('MONGO_DB_NAME', 'donorsUSA')
-MONGODB_URI = 'mongodb://root:kZc-TT4-YcG-ZZR@ds119250.mlab.com:19250'
+MONGODB_URI = 'mongodb://root:kZc-TT4-YcG-ZZR@ds119250.mlab.com:19250/heroku_l67bkg1s'
 MONGO_DB_NAME = 'heroku_l67bkg1s'
 COLLECTION_NAME = 'projects'
 FIELDS = {'funding_status': True,
