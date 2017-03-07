@@ -6,25 +6,10 @@ import os
 
 app = Flask(__name__)
 
-MONGOD_PORT = 19250
-MONGOD_HOST = 'ds119250.mlab.com'
-MONGO_DB_NAME = 'heroku_l67bkg1s'
-MONGODB_URI = 'mongodb://<dbuser>:<dbpassword>@ds119250.mlab.com:19250/heroku_l67bkg1s'
-dbuser = "root"
-dbpassword = "kZc-TT4-YcG-ZZR"
-MONGO_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017')
-DBS_NAME = os.getenv('MONGO_DB_NAME', 'donorsUSA')
+MONGO_URI = os.getenv('mongodb://root:kZc-TT4-YcG-ZZR@ds119250.mlab.com:19250', 'mongodb://localhost:27017')
+DBS_NAME = os.getenv('heroku_l67bkg1s', 'donorsUSA')
 COLLECTION_NAME = 'projects'
-FIELDS = {'funding_status': True,
-          'school_state': True,
-          'school_county': True,
-          'school_latitude': True,
-          'school_longitude': True,
-          'resource_type': True,
-          'poverty_level': True,
-          'date_posted': True,
-          'total_donations': True,
-          '_id': False}
+
 
 
 @app.route("/")
