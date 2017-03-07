@@ -6,9 +6,11 @@ import os
 
 app = Flask(__name__)
 
-MONGODB_HOST = 'localhost'
-MONGODB_PORT = 27017
-DBS_NAME = 'donorsUSA'
+
+MONGO_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017')
+DBS_NAME = os.getenv('MONGO_DB_NAME', 'donorsUSA')
+MONGODB_URI = 'mongodb://root:kZc-TT4-YcG-ZZR@ds119250.mlab.com:19250'
+MONGO_DB_NAME = 'heroku_l67bkg1s'
 COLLECTION_NAME = 'projects'
 FIELDS = {'funding_status': True,
           'school_state': True,
@@ -29,15 +31,29 @@ def index():
 
 @app.route("/donorsUS/projects")
 def donor_projects():
-    connection = MongoClient(MONGODB_HOST, MONGODB_PORT)
-    collection = connection[DBS_NAME][COLLECTION_NAME]
-    projects = collection.find(projection=FIELDS, limit=75000)
-    json_projects = []
-    for project in projects:
-        json_projects.append(project)
-    json_projects = json.dumps(json_projects)
-    connection.close()
-    return json_projects
+    """
+    A Flask view to serve the project data from
+    MongoDB in JSON format.
+    """
+
+    # A constant that defines the record fields that we wish to retrieve.
+    FIELDS = {
+        '_id': False, 'funding_status': True, 'school_state': True,
+        'resource_type': True, 'poverty_level': True,
+        'date_posted': True, 'total_donations': True
+    }
+
+    # Open a connection to MongoDB using a with statement such that the
+    # connection will be closed as soon as we exit the with statement
+    # The MONGO_URI connection is required when hosted using a remote mongo db.
+    with MongoClient(MONGO_URI) as conn:
+        # Define which collection we wish to access
+        collection = conn[DBS_NAME][COLLECTION_NAME]
+        # Retrieve a result set only with the fields defined in FIELDS
+        # and limit the the results to a lower limit of 20000
+        projects = collection.find(projection=FIELDS, limit=20000)
+        # Convert projects to a list in a JSON object and return the JSON data
+        return json.dumps(list(projects))
 
 
 if __name__ == "__main__":
