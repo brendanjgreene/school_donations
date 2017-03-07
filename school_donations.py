@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-MONGO_URI = os.getenv('mongodb://root:kZc-TT4-YcG-ZZR@ds119250.mlab.com:19250/heroku_l67bkg1s', 'mongodb://localhost:27017')
+MONGO_URI = os.getenv('mongodb://root:kZc-TT4-YcG-ZZR@ds119250.mlab.com:19250', 'mongodb://localhost:27017')
 DBS_NAME = os.getenv('heroku_l67bkg1s', 'donorsUSA')
 COLLECTION_NAME = 'projects'
 
@@ -46,6 +46,7 @@ def donor_projects():
         projects = collection.find(projection=FIELDS, limit=20000)
         # Convert projects to a list in a JSON object and return the JSON data
         return json.dumps(list(projects))
+
 
 
 if __name__ == "__main__":
