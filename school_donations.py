@@ -37,11 +37,16 @@ def donor_projects():
     """
 
     # A constant that defines the record fields that we wish to retrieve.
-    FIELDS = {
-        '_id': False, 'funding_status': True, 'school_state': True,
-        'resource_type': True, 'poverty_level': True,
-        'date_posted': True, 'total_donations': True
-    }
+    FIELDS = {'funding_status': True,
+              'school_state': True,
+              'school_county': True,
+              'school_latitude': True,
+              'school_longitude': True,
+              'resource_type': True,
+              'poverty_level': True,
+              'date_posted': True,
+              'total_donations': True,
+              '_id': False}
 
     # Open a connection to MongoDB using a with statement such that the
     # connection will be closed as soon as we exit the with statement
