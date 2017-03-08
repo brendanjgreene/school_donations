@@ -30,3 +30,6 @@ The goal of this project is to expand on the skillsets and tools for creating a 
 6.  Flask: A Python based  micro – framework  used to serve our data from the server to our web based interface.
 7.  Intro.js: A javascript that helps us create a interactive tutorial for our dashboard.
 8.  data-table.js: A javascript that help employ additional functionality to my data table.
+9.  Heroku: for web deployment.
+10. Gunicorn and PRrocfiles: to support other OS.
+11. Heroku mLab Add on: to deploy our Mongo database on the web.
