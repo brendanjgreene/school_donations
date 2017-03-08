@@ -104,7 +104,7 @@ function makeGraphs(error, projectsJson) {
     totalDonationsND = dc.numberDisplay("#total-donations-nd");
     fundingStatusChart = dc.pieChart("#funding-chart");
     datatable = dc.dataTable("#dcdatatable");
-    mySize = dc.numberDisplay("#mySize");
+    tableSize = dc.numberDisplay("#tableSize");
     scatterChart = dc.scatterPlot("#scatter");
 
     scatterChart
@@ -156,7 +156,7 @@ function makeGraphs(error, projectsJson) {
         .dimension(countyDim)
         .group(countyGroup);
 
-    mySize
+    tableSize
         .formatNumber(d3.format("d"))
         .valueAccessor(function (d) {
             return d;
@@ -241,7 +241,7 @@ function display() {
         d3.select('#last')
             .attr('disabled', ofs-pag<0 ? 'true' : null);
         d3.select('#next')
-            .attr('disabled', ofs+pag>=parseInt($("#mySize").text()) ? 'true' : null);
+            .attr('disabled', ofs+pag>=parseInt($("#tableSize").text()) ? 'true' : null);
 }
 function update() {
       datatable.beginSlice(ofs-1);
@@ -265,7 +265,7 @@ function resetofs() {
     datatable.redraw();
 }
 function lastpag() {
-    ofs = 1+parseInt($("#mySize").text())-pag;
+    ofs = 1+parseInt($("#tableSize").text())-pag;
     update();
     datatable.redraw();
 }

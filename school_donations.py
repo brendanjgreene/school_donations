@@ -6,6 +6,7 @@ import os
 
 app = Flask(__name__)
 
+# Use os.getenv so the app can be run both locally and remotely
 MONGO_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017')
 DBS_NAME = os.getenv('MONGO_DB_NAME', 'donorsUSA')
 COLLECTION_NAME = 'projects'
@@ -43,7 +44,7 @@ def donor_projects():
         collection = conn[DBS_NAME][COLLECTION_NAME]
         # Retrieve a result set only with the fields defined in FIELDS
         # and limit the the results to a lower limit of 20000
-        projects = collection.find(projection=FIELDS, limit=50000)
+        projects = collection.find(projection=FIELDS, limit=40000)
         # Convert projects to a list in a JSON object and return the JSON data
         return json.dumps(list(projects))
 
