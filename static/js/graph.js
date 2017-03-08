@@ -231,6 +231,7 @@ function makeGraphs(error, projectsJson) {
 
     update();
     dc.renderAll();
+     $('#patients').hide();
 }
 var ofs = 1, pag = 10;
 function display() {

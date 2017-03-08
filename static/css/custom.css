@@ -79,3 +79,16 @@ body.application {
 .night .chart-title{
     color: #f8ff89;
 }
+
+#patients {
+    background-color: rgba(0,0,0,0.7);
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding-top: 10%;
+    color: #f8ff89;
+    font-size: xx-large;
+    position: fixed;
+    z-index: 2;
+
+}
