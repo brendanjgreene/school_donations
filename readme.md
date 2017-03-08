@@ -17,7 +17,7 @@ The goal of this project is to expand on the skillsets and tools for creating a 
 1.  I organised the presentation layer and to make it visually appealing through html and css and bootstrap classes.
 2.  I added one additional data dimension, specifically the 'school_county' field and a corresponding menu selection to filter this field. I also created and additional range chart for the associated time chart and changed it to a line chart to make it more visually interesting!  I also added a data table so that details of individual donations including pagination to make the table manageble.
 3.  I included additional functionality that provides a Dashboard tutorial, which targets each Dashboard element with an explanation of its purpose (see guidelines below this list).
-4.  I will deploy the dashboard to a website using Heroku!
+4.  I deployed the dashboard to a website using Heroku at https://safe-mesa-50210.herokuapp.com/!
 5.  Yes indeed it is beautiful!
 
 ## Tech Used
