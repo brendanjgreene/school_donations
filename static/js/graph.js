@@ -29,12 +29,7 @@ function makeGraphs(error, projectsJson) {
     dateDim = ndx.dimension(function (d) {
         return d["date_posted"];
     });
-    var latDim = ndx.dimension(function (d) {
-        return [+d.school_latitude]
-    });
-    var longDim = ndx.dimension(function (d) {
-        return [+d.school_longitude]
-    })
+
     var latLongDim = ndx.dimension(function (d) {
         return [+d.school_longitude, +d.school_latitude];
     });
@@ -87,12 +82,6 @@ function makeGraphs(error, projectsJson) {
     //Define values (to be used in charts)
     var minDate = dateDim.bottom(1)[0]["date_posted"];
     var maxDate = dateDim.top(1)[0]["date_posted"];
-
-    var minLong = longDim.bottom(1)[0]["school_longitude"];
-    var maxLong = longDim.top(1)[0]["school_longitude"];
-
-    var minLat = latDim.bottom(1)[0]["school_latitude"];
-    var maxLat = latDim.top(1)[0]["school_latitude"];
 
 
     //Charts
